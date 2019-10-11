@@ -1,5 +1,4 @@
 <?php
-echo "debut\n";
 require "./connexion_bdd.php";
 
 
@@ -7,6 +6,8 @@ $mysqli = connexion_bdd();
 $query = "SELECT * FROM commerce;";
 $result = $mysqli->query($query);
 $row = $result->fetch_all(MYSQLI_ASSOC);
+
+
 $reponse = "<?xml version=\"1.0\" encoding=\"utf-8\"?>";
 if($row != null){
   $reponse.="<etat>1</etat>";
