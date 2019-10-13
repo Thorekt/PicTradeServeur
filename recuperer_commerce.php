@@ -36,10 +36,13 @@ function select_avec_id($id){
 
 $mysqli = connexion_bdd();
 
-if(isset($_POST["placeID"]),isset($_POST["nom"]),
-   isset($_POST["longitude"]),isset($_POST["latitude"])){
+if(
+  isset($_POST["placeID"],$_POST["nom"],$_POST["longitude"],$_POST["latitude"])
+  )
+{
 
    $resultat = select_avec_placeID($_POST["placeID"]);
+
    if (sizeof($resultat) == 0){
      ajouter_commerce($_POST["placeID"], $_POST["nom"], $_POST["longitude"],
                       $_POST["latitude"]);
@@ -62,7 +65,7 @@ if (sizeof($resultat) == 1){
   $reponse.="<etat>1</etat>";
   $reponse.="<message>BDD OK!</message>";
 
-  $commerceXML .= "<commerce ";
+  $commerceXML = "<commerce ";
   foreach ($resultat[0] as $cle => $valeur) {
     if($cle == "id"){
       $commerceXML .= $cle.'="'.$valeur.'">';
