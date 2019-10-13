@@ -11,7 +11,6 @@ function connexion_bdd(){
 		echo "connection echoué: " . $mysqli->connect_error."\n";
 		exit();
 	}else{
-		echo "connection reussie\n";
 		return	$mysqli;
 	}
 }

@@ -58,7 +58,7 @@ if(
 }
 
 
-$reponse = "<?xml version=\"1.0\" encoding=\"utf-8\"?>";
+$reponse = "<?xml version=\"1.0\" encoding=\"utf-8\"?><resultat>";
 if (sizeof($resultat) == 1){
 
 
@@ -83,7 +83,7 @@ if (sizeof($resultat) == 1){
   $reponse.="<message>".$mysqli->error."</message>";
 }
 
-$reponse.="<nombreDeResultats>".sizeof($resultat)."</nombreDeResultats>";
+$reponse.="<nombreDeResultats>".sizeof($resultat)."</nombreDeResultats></resultat>";
 
 
 

@@ -7,8 +7,7 @@ $query = "SELECT * FROM commerce;";
 $result = $mysqli->query($query);
 $row = $result->fetch_all(MYSQLI_ASSOC);
 
-
-$reponse = "<?xml version=\"1.0\" encoding=\"utf-8\"?>";
+$reponse = "<?xml version=\"1.0\" encoding=\"utf-8\"?><resultat>";
 if($row != null){
   $reponse.="<etat>1</etat>";
   $reponse.="<message>BDD OK!</message>";
@@ -36,6 +35,7 @@ if($row != null){
   $reponse.="<message>".$mysqli->error."</message>";
 }
 
+$reponse.="</resultat>"
 $mysqli->close();
 
 
