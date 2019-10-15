@@ -35,7 +35,7 @@ if($row != null){
   $reponse.="<message>".$mysqli->error."</message>";
 }
 
-$reponse.="</resultat>"
+$reponse.="</resultat>";
 $mysqli->close();
 
 
