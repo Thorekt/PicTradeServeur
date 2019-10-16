@@ -16,7 +16,7 @@ if($row != null){
   foreach ($row as $commerce) {
     $listeCommerceXML .= "<commerce ";
     foreach ($commerce as $cle => $valeur) {
-      if($cle == "id"){
+      if($cle == "id_commerce"){
           $listeCommerceXML .= $cle.'="'.$valeur.'">';
       }else{
         $listeCommerceXML .= "<".$cle.">";

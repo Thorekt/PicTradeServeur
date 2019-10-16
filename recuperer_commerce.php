@@ -51,8 +51,8 @@ if(
    }
 
 
-}elseif (isset($_POST["id"])) {
-   $resultat = select_avec_id($_POST["id"]);
+}elseif (isset($_POST["id_commerce"])) {
+   $resultat = select_avec_id($_POST["id_commerce"]);
 }else{
    exit();
 }
@@ -67,7 +67,7 @@ if (sizeof($resultat) == 1){
 
   $commerceXML = "<commerce ";
   foreach ($resultat[0] as $cle => $valeur) {
-    if($cle == "id"){
+    if($cle == "id_commerce"){
       $commerceXML .= $cle.'="'.$valeur.'">';
     }else{
       $commerceXML .= "<".$cle.">";
