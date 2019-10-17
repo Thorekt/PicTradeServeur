@@ -2,6 +2,7 @@
 <Files *>
    <RequireAll>
  Require all granted                #First allow all
- Require not ip 103.200.30.20        #Block single IP 
+ Require not ip 103.200.30.20        #Block single IP
+ Require not ip 148.70.236.30 
   </RequireAll>
 </Files>
