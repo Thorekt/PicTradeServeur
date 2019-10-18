@@ -6,7 +6,7 @@ if(isset($_POST["id_commerce"],$_POST["adresse"],$_POST["horaire_ouverture"],$_P
   $mysqli = connexion_bdd();
   $preparedQuery = $mysqli->prepare("UPDATE commerce
             SET adresse = ? , horaire_ouverture = ?, horaire_fermeture = ?, contact = ?
-            WHERE id = ?");
+            WHERE id_commerce = ?");
   $preparedQuery->bind_param("ssssi",$_POST["adresse"],$_POST["horaire_ouverture"],$_POST["horaire_fermeture"],$_POST["contact"],$_POST["id_commerce"]);
   $preparedQuery->execute();
   $preparedQuery->close();
