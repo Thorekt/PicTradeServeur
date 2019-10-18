@@ -19,10 +19,11 @@ if(isset($_POST["id_commerce"],$_POST["image"])){
     mkdir($id_commerce, 0755, true);
   }
 
-  $fichierPhoto = fopen($id_commerce."/".$id_photo.".txt", "w");
+  $fichierPhoto = fopen("photo_commerce/".$id_commerce."/".$id_photo.".txt", "w");
   fwrite($fichierPhoto, $image);
 
   $mysqli->close();
+  
   echo "ok";
 
 }else {

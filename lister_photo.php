@@ -27,7 +27,7 @@ if ($_POST["id_commerce"]){
     $listeCommerceXML = "<listePhoto id_commerce=".$id_commerce.">";
     foreach ($resultat as $photo) {
       $listeCommerceXML .= "<photo id_photo=".$photo->id_photo">";
-      $cheminFichier = $id_commerce."/".$photo->id_id_photo.".txt";
+      $cheminFichier = "photo_commerce/".$id_commerce."/".$photo->id_id_photo.".txt";
       $fichierPhoto = fopen($cheminFichier,"r");
       $listeCommerceXML.= fread($fichierPhoto,filesize($cheminFichier));
       fclose($fichierPhoto);
