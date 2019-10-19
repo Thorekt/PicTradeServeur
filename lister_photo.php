@@ -19,7 +19,7 @@ function select_avec_id($id){
 $reponse = "<?xml version=\"1.0\" encoding=\"utf-8\"?><resultat>";
 if ($_POST["id_commerce"]){
   $id_commerce = $_POST["id_commerce"];
-  $resultat = select_avec_placeID($id_commerce);
+  $resultat = select_avec_id($id_commerce);
 
   if($resultat != null){
     $reponse.="<etat>1</etat>";
