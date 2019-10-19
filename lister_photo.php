@@ -27,7 +27,7 @@ if ($_POST["id_commerce"]){
 
     $listePhotoXML = "<listePhoto id_commerce=".$id_commerce.">";
     foreach ($resultat as $photo) {
-      $listePhotoXML .= "<photo id_photo=".$photo->id_photo">";
+      $listePhotoXML .= "<photo id_photo=".$photo->id_photo.">";
 
       $listePhotoXML .= "<image>";
       $cheminFichier = "photo_commerce/".$id_commerce."/".$photo->id_id_photo.".txt";
