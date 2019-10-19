@@ -4,12 +4,12 @@ require "./connexion_bdd.php";
 $mysqli = connexion_bdd();
 
 $reponse = "<?xml version=\"1.0\" encoding=\"utf-8\"?><resultat>";
-if ($_POST["id_commerce"]){
+if (isset($_POST["id_commerce"])){
   $id_commerce = $_POST["id_commerce"];
 
 
   $preparedQuery = $mysqli->prepare("SELECT * from photo where id_commerce = ?");
-  $preparedQuery->bind_param("i",$id);
+  $preparedQuery->bind_param("i",$id_commerce);
   $preparedQuery->execute();
   $resultat = $preparedQuery->get_result()->fetch_all(MYSQLI_ASSOC);
   $preparedQuery->close();
@@ -21,11 +21,12 @@ if ($_POST["id_commerce"]){
 
     $listePhotoXML = "<listePhoto id_commerce=".$id_commerce.">";
     foreach ($resultat as $photo) {
-      $listePhotoXML .= "<photo id_photo=".$photo->id_photo.">";
-
+      $listePhotoXML .= "<photo id_photo=".$photo[id_photo].">";
       $listePhotoXML .= "<image>";
-      $cheminFichier = "photo_commerce/".$id_commerce."/".$photo->id_id_photo.".txt";
+      $cheminFichier = "photo_commerce/".$id_commerce."/".$photo[id_photo].".txt";
+
       $fichierPhoto = fopen($cheminFichier,"r");
+
       $listePhotoXML.= fread($fichierPhoto,filesize($cheminFichier));
       fclose($fichierPhoto);
       $listePhotoXML .= "</image>";
