@@ -15,15 +15,20 @@ if(isset($_POST["id_commerce"],$_POST["image"])){
 
   $id_photo = $mysqli->insert_id;
 
-  if(!is_dir($id_commerce)){
-    mkdir($id_commerce, 0755, true);
+  if(!is_dir("./photo_commerce/".$id_commerce)){
+    mkdir("./photo_commerce/".$id_commerce, 0777, true);
+
+      echo "is_dir";
+  }else {
+    echo "is_NOT_dir";
   }
 
-  $fichierPhoto = fopen("photo_commerce/".$id_commerce."/".$id_photo.".txt", "w");
+  $fichierPhoto = fopen("./photo_commerce/".$id_commerce."/".$id_photo.".txt", "w");
   fwrite($fichierPhoto, $image);
+  fclose($fichierPhoto);
 
   $mysqli->close();
-  
+
   echo "ok";
 
 }else {
