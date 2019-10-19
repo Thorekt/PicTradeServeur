@@ -1,19 +1,13 @@
 <?php
 require "./connexion_bdd.php";
 
-
-
-
-
-
-
-
+$mysqli = connexion_bdd();
 
 $reponse = "<?xml version=\"1.0\" encoding=\"utf-8\"?><resultat>";
 if ($_POST["id_commerce"]){
   $id_commerce = $_POST["id_commerce"];
-  
-  $mysqli = connexion_bdd();
+
+
   $preparedQuery = $mysqli->prepare("SELECT * from photo where id_commerce = ?");
   $preparedQuery->bind_param("i",$id);
   $preparedQuery->execute();
@@ -43,15 +37,15 @@ if ($_POST["id_commerce"]){
 
   }else {
     $reponse.="<etat>0</etat>";
-    $reponse.="<message>".$mysqli->error."</message>";
+    $reponse.="<message>".$mysqli->error." ou pas de photos</message>";
   }
-  $mysqli->close();
 
 }else {
   $reponse.="<etat>0</etat>";
   $reponse.="<message>id_commerce pas set</message>";
 }
 
+$mysqli->close();
 
 $reponse.="</resultat>";
 echo $reponse;
