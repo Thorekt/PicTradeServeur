@@ -15,35 +15,44 @@ function select_avec_id($id){
   return $resultat;
 }
 
+
+$reponse = "<?xml version=\"1.0\" encoding=\"utf-8\"?><resultat>";
 if ($_POST["id_commerce"]){
   $id_commerce = $_POST["id_commerce"];
   $resultat = select_avec_placeID($id_commerce);
 
-  $reponse = "<?xml version=\"1.0\" encoding=\"utf-8\"?><resultat>";
   if($resultat != null){
     $reponse.="<etat>1</etat>";
     $reponse.="<message>BDD OK!</message>";
 
-    $listeCommerceXML = "<listePhoto id_commerce=".$id_commerce.">";
+    $listePhotoXML = "<listePhoto id_commerce=".$id_commerce.">";
     foreach ($resultat as $photo) {
-      $listeCommerceXML .= "<photo id_photo=".$photo->id_photo">";
+      $listePhotoXML .= "<photo id_photo=".$photo->id_photo">";
+
+      $listePhotoXML .= "<image>";
       $cheminFichier = "photo_commerce/".$id_commerce."/".$photo->id_id_photo.".txt";
       $fichierPhoto = fopen($cheminFichier,"r");
-      $listeCommerceXML.= fread($fichierPhoto,filesize($cheminFichier));
+      $listePhotoXML.= fread($fichierPhoto,filesize($cheminFichier));
       fclose($fichierPhoto);
-      $listeCommerceXML .= "</photo>";
+      $listePhotoXML .= "</image>";
+      $listePhotoXML .= "</photo>";
     }
-    $listeCommerceXML .= "</listePhoto>";
+    $listePhotoXML .= "</listePhoto>";
 
-    $reponse .= $listeCommerceXML;
+    $reponse .= $listePhotoXML;
 
   }else {
     $reponse.="<etat>0</etat>";
     $reponse.="<message>".$mysqli->error."</message>";
   }
 
-  $reponse.="</resultat>";
+
+}else {
+  $reponse.="<etat>0</etat>";
+  $reponse.="<message>id_commerce pas set</message>";
 }
+
+$reponse.="</resultat>";
 echo $reponse;
 
 
