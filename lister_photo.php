@@ -4,22 +4,22 @@ require "./connexion_bdd.php";
 
 
 
-function select_avec_id($id){
+
+
+
+
+
+$reponse = "<?xml version=\"1.0\" encoding=\"utf-8\"?><resultat>";
+if ($_POST["id_commerce"]){
+  $id_commerce = $_POST["id_commerce"];
+  
   $mysqli = connexion_bdd();
   $preparedQuery = $mysqli->prepare("SELECT * from photo where id_commerce = ?");
   $preparedQuery->bind_param("i",$id);
   $preparedQuery->execute();
   $resultat = $preparedQuery->get_result()->fetch_all(MYSQLI_ASSOC);
   $preparedQuery->close();
-  $mysqli->close();
-  return $resultat;
-}
 
-
-$reponse = "<?xml version=\"1.0\" encoding=\"utf-8\"?><resultat>";
-if ($_POST["id_commerce"]){
-  $id_commerce = $_POST["id_commerce"];
-  $resultat = select_avec_id($id_commerce);
 
   if($resultat != null){
     $reponse.="<etat>1</etat>";
@@ -45,12 +45,13 @@ if ($_POST["id_commerce"]){
     $reponse.="<etat>0</etat>";
     $reponse.="<message>".$mysqli->error."</message>";
   }
-
+  $mysqli->close();
 
 }else {
   $reponse.="<etat>0</etat>";
   $reponse.="<message>id_commerce pas set</message>";
 }
+
 
 $reponse.="</resultat>";
 echo $reponse;
