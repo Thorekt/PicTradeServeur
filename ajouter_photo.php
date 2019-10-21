@@ -18,9 +18,9 @@ if(isset($_POST["id_commerce"],$_POST["image"])){
   if(!is_dir("./photo_commerce/".$id_commerce)){
     mkdir("./photo_commerce/".$id_commerce, 0777, true);
 
-      echo "is_dir";
+    echo "creation d'un repertoire";
   }else {
-    echo "is_NOT_dir";
+    echo "repertoire deja existant";
   }
 
   $fichierPhoto = fopen("./photo_commerce/".$id_commerce."/".$id_photo.".txt", "w");

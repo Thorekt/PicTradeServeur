@@ -19,11 +19,11 @@ if (isset($_POST["id_commerce"])){
     $reponse.="<etat>1</etat>";
     $reponse.="<message>BDD OK!</message>";
 
-    $listePhotoXML = "<listePhoto id_commerce=".$id_commerce.">";
+    $listePhotoXML = "<listePhoto id_commerce='".$id_commerce."'>";
     foreach ($resultat as $photo) {
-      $listePhotoXML .= "<photo id_photo=".$photo[id_photo].">";
+      $listePhotoXML .= "<photo id_photo='".$photo[id_photo]."'>";
       $listePhotoXML .= "<image>";
-      $cheminFichier = "photo_commerce/".$id_commerce."/".$photo[id_photo].".txt";
+      $cheminFichier = "./photo_commerce/".$id_commerce."/".$photo[id_photo].".txt";
 
       $fichierPhoto = fopen($cheminFichier,"r");
 
@@ -49,6 +49,8 @@ if (isset($_POST["id_commerce"])){
 $mysqli->close();
 
 $reponse.="</resultat>";
+
+
 echo $reponse;
 
 
